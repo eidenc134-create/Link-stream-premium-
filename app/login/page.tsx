@@ -8,18 +8,36 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setMsg(null);
-    setLoading(true);
-    const supabase = supabaseBrowser();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+async function onSubmit(e: React.FormEvent)
+{
+e.preventDefault();
+ setMsg(null);
+ setLoading(true);
+ try {
+  const supabase = supabaseBrowser();
+  const { data, error } = await
+  supabase.auth.signInWithPassword({
+    email: email.trim(),
+    password,
+  });
+  if (error) {
+    setMsg(error.message);
     setLoading(false);
-    if (error) return setMsg(error.message);
-    window.location.href = "/dashboard";
+   return; 
   }
-
+  if (!data.session) {
+    setMsg("No se pudo iniciar sesión.");
+    setLoading(false);
+    return;
+  }
+  // éxito
+  window.location.href = "/dashboard";
+} catch (err) {
+console.error(err);
+setMsg("Ocurrió un error al iniciar sesión.");
+setLoading(false);
+}
+}
   return (
     <main className="auth-layout">
       <section className="card strong-card auth-side">

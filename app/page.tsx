@@ -1,0 +1,204 @@
+const heroMetrics = [
+  { value: "99.9%", label: "Disponibilidad objetivo" },
+  { value: "24h", label: "Ventana de escrow" },
+  { value: "< 120m", label: "SLA recomendado" },
+  { value: "MXN", label: "Optimizado para México" },
+];
+
+const featureCards = [
+  {
+    icon: "◈",
+    title: "Dashboard con carácter SaaS",
+    body: "Métricas, quick actions, bloques operativos y una navegación que se siente más seria y vendible.",
+  },
+  {
+    icon: "◎",
+    title: "Experiencia fintech premium",
+    body: "Tarjetas más limpias, capas translúcidas, jerarquía tipográfica fuerte y una paleta pensada para confianza.",
+  },
+  {
+    icon: "↗",
+    title: "Marketplace orientado a conversión",
+    body: "Buscador, filtros, cards modernas y detalle de listing pensado para empujar el checkout.",
+  },
+];
+
+const journeys = [
+  {
+    step: "01",
+    title: "Descubre ofertas confiables",
+    body: "Explora categorías, revisa SLA, reputación y capacidad disponible antes de comprar.",
+  },
+  {
+    step: "02",
+    title: "Paga con protección",
+    body: "Mercado Pago maneja el cobro y LinkStream mantiene una ventana de resguardo para la entrega.",
+  },
+  {
+    step: "03",
+    title: "Opera como seller pro",
+    body: "Onboarding claro, panel operativo, métricas y publicación rápida de nuevos cupos.",
+  },
+];
+
+const categoryCards = [
+  { title: "Streaming & entretenimiento", note: "Netflix, Spotify, Disney+, Max, Crunchyroll." },
+  { title: "Herramientas creativas", note: "Adobe, Figma, Canva, edición de video y diseño." },
+  { title: "Productividad & IA", note: "Notion, ChatGPT, Copilot, suites de trabajo y automatización." },
+];
+
+const highlights = [
+  "Identidad visual más premium",
+  "Modo claro/oscuro persistente",
+  "Bloques y cards con mayor profundidad",
+  "Seller dashboard más serio",
+  "Home enfocada a producto y confianza",
+  "Flujo de compra más elegante",
+];
+
+export default function Home() {
+  return (
+    <main>
+      <section className="hero hero-saas">
+        <div className="hero-card hero-copy glass-panel">
+          <span className="eyebrow">Fintech SaaS premium para cupos digitales</span>
+          <h1>Lleva LinkStream a una experiencia más sofisticada, confiable y lista para vender.</h1>
+          <p className="lead">
+            Esta versión eleva la plataforma con una estética más pro, dashboards más útiles, modo claro/oscuro
+            persistente y una estructura visual que transmite confianza desde la primera pantalla.
+          </p>
+
+          <div className="hero-actions">
+            <a href="/listings" className="button button-primary">
+              Explorar marketplace
+            </a>
+            <a href="/dashboard" className="button button-secondary">
+              Ver control center
+            </a>
+          </div>
+
+          <div className="metrics-grid metrics-grid-hero">
+            {heroMetrics.map((metric) => (
+              <div key={metric.label} className="metric-card strong-card">
+                <p className="metric-value">{metric.value}</p>
+                <p className="metric-label">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside className="hero-card hero-side glass-panel">
+          <div className="mockup finance-mockup">
+            <div className="mockup-header">
+              <div>
+                <p className="mini-label">Live ops</p>
+                <h3>Revenue cockpit</h3>
+              </div>
+              <span className="badge badge-success">Operativo</span>
+            </div>
+
+            <div className="mini-chart">
+              <span style={{ height: "42%" }} />
+              <span style={{ height: "55%" }} />
+              <span style={{ height: "66%" }} />
+              <span style={{ height: "74%" }} />
+              <span style={{ height: "88%" }} />
+              <span style={{ height: "71%" }} />
+              <span style={{ height: "96%" }} />
+            </div>
+
+            <div className="list-mini">
+              {[
+                ["Ventas procesadas", "$28,940 MXN"],
+                ["SLA promedio", "94 min"],
+                ["Disputas", "0.8%"],
+              ].map(([label, value]) => (
+                <div className="list-mini-item compact" key={label}>
+                  <span className="muted">{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section className="section">
+        <div className="section-header">
+          <div>
+            <h2 className="section-title">Qué hace más pro a esta versión</h2>
+            <p className="section-subtitle">No es solo más bonita: también se siente más producto, más SaaS y más lista para escalar.</p>
+          </div>
+        </div>
+
+        <div className="features-grid">
+          {featureCards.map((feature) => (
+            <article className="card strong-card" key={feature.title}>
+              <div className="icon-chip">{feature.icon}</div>
+              <h3>{feature.title}</h3>
+              <p>{feature.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section two-col two-col-emphasis">
+        <article className="card strong-card">
+          <span className="eyebrow">Cómo se siente el producto</span>
+          <h2 className="section-title">Arquitectura visual con lenguaje fintech</h2>
+          <p className="lead compact-lead">
+            Mejor contraste, mejor aire, mejores superficies y más sensación de sistema operativo para sellers.
+          </p>
+          <div className="bullet-grid">
+            {highlights.map((item) => (
+              <div className="bullet-item" key={item}>
+                <span className="bullet-dot" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="card strong-card">
+          <span className="eyebrow">Journeys clave</span>
+          <div className="timeline-list">
+            {journeys.map((journey) => (
+              <div className="timeline-item" key={journey.step}>
+                <div className="timeline-step">{journey.step}</div>
+                <div>
+                  <strong>{journey.title}</strong>
+                  <p className="muted">{journey.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="section">
+        <div className="section-header">
+          <div>
+            <h2 className="section-title">Categorías destacadas</h2>
+            <p className="section-subtitle">Una home con secciones más vendibles y con mejor lectura de negocio.</p>
+          </div>
+          <a className="button" href="/listings">
+            Abrir catálogo
+          </a>
+        </div>
+
+        <div className="catalog-grid">
+          {categoryCards.map((item) => (
+            <article className="card listing-card spotlight-card" key={item.title}>
+              <span className="badge">Categoría</span>
+              <h3>{item.title}</h3>
+              <p>{item.note}</p>
+              <a href="/listings" className="text-link">
+                Ver oportunidades →
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}

@@ -11,18 +11,30 @@ export default function SignupPage() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setMsg(null);
-    setLoading(true);
+    setMsg(null)
+    setLoading(true)
+    try{
     const supabase = supabaseBrowser();
-    const { data, error } = await supabase.auth.signUp({ email, password });
-    if (error) {
-      setLoading(false);
-      return setMsg(error.message);
+    const { data, error } = await supabase.auth.signUp({ email: email,trim(), password,
+    });
+    if (error)
+      setMsg(error.message);
+    setLoading(false);
+    return;
     }
-    if (data.user) await fetch("/api/profiles/init", { method: "POST" });
-    window.location.href = "/dashboard";
+    if(!Data.user){
+      setMsg("No se pudo crear la cuenta.");
+      setLoading(false);
+      return;
+    }
+    setMsg("Cuenta creada. Revisa tu correo para confirmar.");
+    setLoading(false)
+  }catch (err) {
+    console.error(err);
+    setMsg("Ocurrió un error al crear la cuenta.");
+    setLoading(false);
   }
-
+}
   return (
     <main className="auth-layout">
       <section className="card strong-card auth-side">

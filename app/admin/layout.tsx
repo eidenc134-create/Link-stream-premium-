@@ -6,7 +6,7 @@ export default async function AdminLayout({
   }: {
     children: React.ReactNode;
     }) {
-      const supabase = supabaseServer();
+      const supabase = await supabaseServer();
 
         const {
             data: { user },

@@ -30,7 +30,6 @@ export async function POST(req: Request) {
                                                                                                                         }
 
                                                                                                                             return NextResponse.json({ success: true });
-
                                                                                                                               } catch (error: any) {
                                                                                                                                   return NextResponse.json(
                                                                                                                                         { error: error.message || "Error interno" },

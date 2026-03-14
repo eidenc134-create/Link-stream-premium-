@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabaseServer";
 
 export default async function AdminLayout({
   children,
   }: {
-    children: React.ReactNode;
+    children: ReactNode;
     }) {
       const supabase = await supabaseServer();
 
@@ -18,7 +19,7 @@ export default async function AdminLayout({
 
                         const { data: profile } = await supabase
                             .from("profiles")
-                                .select("role,email")
+                                .select("role")
                                     .eq("email", user.email)
                                         .single();
 

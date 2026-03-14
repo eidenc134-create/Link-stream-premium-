@@ -9,13 +9,5 @@ export default async function AdminUsersPage() {
             .select("*")
                 .order("created_at", { ascending: false });
 
-                  return (
-                      <div style={{ padding: "40px", color: "white" }}>
-                            <h1 style={{ fontSize: "28px", marginBottom: "20px" }}>
-                                    Gestión de usuarios
-                                          </h1>
-
-                                                <AdminUsersClient initialUsers={users ?? []} />
-                                                    </div>
-                                                      );
-                                                      }
+                  return <AdminUsersClient initialUsers={users ?? []} />;
+                  }

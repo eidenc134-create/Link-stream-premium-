@@ -1,47 +1,49 @@
-import { supabaseServer } from "@/lib/supabaseServer";
+import { createClient } from "@supabase/supabase-js"
 
-export default async function AdminInventoryPage() {
-  const supabase = await supabaseServer();
+export default async function InventoryPage() {
 
-    const { data: items } = await supabase
-        .from("product_inventory")
-            .select("*, products(title, provider, plan_name)")
-                .order("created_at", { ascending: false });
+  const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.SUPABASE_SERVICE_ROLE_KEY!
+            )
 
-                  const safeItems = items ?? [];
+              const { data: inventory } = await supabase
+                  .from("inventory")
+                      .select(`
+                            id,
+                                  account_email,
+                                        status,
+                                              products (
+                                                      title
+                                                            )
+                                                                `)
+                                                                    .order("created_at", { ascending: false })
 
-                    return (
-                        <main className="min-h-screen bg-[#030b18] p-8 text-white">
-                              <h1 className="mb-6 text-3xl font-semibold">Inventario</h1>
+                                                                      return (
+                                                                          <main style={{ padding: "32px", color: "white" }}>
+                                                                                <h1>Inventario</h1>
 
-                                    <div className="space-y-4">
-                                            {safeItems.length === 0 ? (
-                                                      <p>No hay inventario todavía.</p>
-                                                              ) : (
-                                                                        safeItems.map((item: any) => (
-                                                                                    <div
-                                                                                                  key={item.id}
-                                                                                                                className="rounded-xl border border-white/10 bg-white/5 p-4"
-                                                                                                                            >
-                                                                                                                                          <p className="font-semibold">
-                                                                                                                                                          {item.products?.title || "Producto"}
-                                                                                                                                                                        </p>
-                                                                                                                                                                                      <p className="text-sm text-white/60">
-                                                                                                                                                                                                      Proveedor: {item.products?.provider || "N/D"}
-                                                                                                                                                                                                                    </p>
-                                                                                                                                                                                                                                  <p className="text-sm text-white/60">
-                                                                                                                                                                                                                                                  Plan: {item.products?.plan_name || "N/D"}
-                                                                                                                                                                                                                                                                </p>
-                                                                                                                                                                                                                                                                              <p className="text-sm text-white/60">
-                                                                                                                                                                                                                                                                                              Email: {item.login_email}
-                                                                                                                                                                                                                                                                                                            </p>
-                                                                                                                                                                                                                                                                                                                          <p className="text-sm text-white/60">
-                                                                                                                                                                                                                                                                                                                                          Estado: {item.status}
-                                                                                                                                                                                                                                                                                                                                                        </p>
-                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                              ))
-                                                                                                                                                                                                                                                                                                                                                                                      )}
-                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                </main>
-                                                                                                                                                                                                                                                                                                                                                                                                  );
-                                                                                                                                                                                                                                                                                                                                                                                                  }
+                                                                                      <table style={{ width: "100%", marginTop: "20px" }}>
+                                                                                              <thead>
+                                                                                                        <tr>
+                                                                                                                    <th>Producto</th>
+                                                                                                                                <th>Email</th>
+                                                                                                                                            <th>Status</th>
+                                                                                                                                                      </tr>
+                                                                                                                                                              </thead>
+
+                                                                                                                                                                      <tbody>
+                                                                                                                                                                                {inventory?.map((item:any) => (
+                                                                                                                                                                                            <tr key={item.id}>
+                                                                                                                                                                                                          <td>{item.products?.title}</td>
+                                                                                                                                                                                                                        <td>{item.account_email}</td>
+                                                                                                                                                                                                                                      <td>{item.status}</td>
+                                                                                                                                                                                                                                                  </tr>
+                                                                                                                                                                                                                                                            ))}
+                                                                                                                                                                                                                                                                    </tbody>
+
+                                                                                                                                                                                                                                                                          </table>
+
+                                                                                                                                                                                                                                                                              </main>
+                                                                                                                                                                                                                                                                                )
+                                                                                                                                                                                                                                                                                }

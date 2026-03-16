@@ -1,15 +1,73 @@
-export default function Success({ searchParams }: { searchParams: { orderId?: string } }) {
-  return (
-    <main className="center-wrap">
-      <section className="card empty-state strong-card checkout-state">
-        <span className="badge badge-success">Pago aprobado</span>
-        <h1>Compra confirmada</h1>
-        <p className="lead compact-lead">Orden: {searchParams.orderId ?? "—"}</p>
-        <p className="muted">El seller recibirá la instrucción, tu pago queda protegido y el flujo continúa con trazabilidad.</p>
-        <div className="form-actions" style={{ justifyContent: "center" }}>
-          <a href="/dashboard" className="button button-primary">Ir al dashboard</a>
-        </div>
-      </section>
-    </main>
-  );
-}
+type SearchParams = {
+    orderId?: string;
+      productTitle?: string;
+        accountEmail?: string;
+          accountPassword?: string;
+            deliveryReference?: string;
+              notes?: string;
+              };
+
+              export default function CheckoutSuccessPage({
+                searchParams,
+                }: {
+                  searchParams: SearchParams;
+                  }) {
+                    return (
+                        <main
+                              style={{
+                                      padding: "40px",
+                                              color: "white",
+                                                      maxWidth: "900px",
+                                                              margin: "0 auto",
+                                                                    }}
+                                                                        >
+                                                                              <div
+                                                                                      style={{
+                                                                                                border: "1px solid rgba(255,255,255,0.08)",
+                                                                                                          background: "rgba(255,255,255,0.04)",
+                                                                                                                    borderRadius: "24px",
+                                                                                                                              padding: "24px",
+                                                                                                                                      }}
+                                                                                                                                            >
+                                                                                                                                                    <h1
+                                                                                                                                                              style={{
+                                                                                                                                                                          fontSize: "32px",
+                                                                                                                                                                                      fontWeight: 700,
+                                                                                                                                                                                                  margin: 0,
+                                                                                                                                                                                                            }}
+                                                                                                                                                                                                                    >
+                                                                                                                                                                                                                              Compra completada
+                                                                                                                                                                                                                                      </h1>
+
+                                                                                                                                                                                                                                              <p style={{ marginTop: "10px", opacity: 0.7 }}>
+                                                                                                                                                                                                                                                        Tu producto fue entregado automáticamente.
+                                                                                                                                                                                                                                                                </p>
+
+                                                                                                                                                                                                                                                                        <div style={{ marginTop: "24px", display: "grid", gap: "12px" }}>
+                                                                                                                                                                                                                                                                                  <div>Orden: {searchParams.orderId || "-"}</div>
+                                                                                                                                                                                                                                                                                            <div>Producto: {searchParams.productTitle || "-"}</div>
+                                                                                                                                                                                                                                                                                                      <div>Correo de la cuenta: {searchParams.accountEmail || "-"}</div>
+                                                                                                                                                                                                                                                                                                                <div>Contraseña: {searchParams.accountPassword || "-"}</div>
+                                                                                                                                                                                                                                                                                                                          <div>Referencia: {searchParams.deliveryReference || "-"}</div>
+                                                                                                                                                                                                                                                                                                                                    <div>Notas: {searchParams.notes || "-"}</div>
+                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                                                                                                                                                                                                                                                                                                                                    <a
+                                                                                                                                                                                                                                                                                                                                                              href="/marketplace"
+                                                                                                                                                                                                                                                                                                                                                                        style={{
+                                                                                                                                                                                                                                                                                                                                                                                    display: "inline-block",
+                                                                                                                                                                                                                                                                                                                                                                                                marginTop: "20px",
+                                                                                                                                                                                                                                                                                                                                                                                                            padding: "12px 16px",
+                                                                                                                                                                                                                                                                                                                                                                                                                        borderRadius: "14px",
+                                                                                                                                                                                                                                                                                                                                                                                                                                    background: "linear-gradient(135deg,#7c3aed,#06b6d4)",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                color: "white",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            textDecoration: "none",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        fontWeight: 700,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Volver al marketplace
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </main>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        );
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }

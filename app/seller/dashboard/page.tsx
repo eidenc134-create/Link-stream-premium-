@@ -1,6 +1,6 @@
-import CreateListingForm from "@/components/seller/CreateListingForm"
-import AIHelper from "@/components/ai/AIHelper"
-import SubscribeButton from "@/components/SubscribeButton"
+import CreateListingForm from "../components/seller/CreateListingForm"
+import AIHelper from "../components/ai/AIHelper"
+import SubscribeButton from "../components/SubscribeButton"
 
 export default function Page() {
   return (

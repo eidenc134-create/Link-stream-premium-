@@ -1,5 +1,5 @@
-import MetricCard from "@/components/ui/MetricCard"
-import Chart from "@/components/dashboard/Chart"
+import MetricCard from "../components/ui/MetricCard"
+import Chart from "../components/dashboard/Chart"
 
 export default function Page() {
   return (

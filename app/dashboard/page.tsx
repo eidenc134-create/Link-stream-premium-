@@ -1,4 +1,4 @@
-import { getServerSupabase } from "@/lib/serverSupabase"
+import { getServerSupabase } from "../lib/serverSupabase"
 
 export default async function Dashboard() {
   const supabase = getServerSupabase()

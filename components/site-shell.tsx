@@ -1,92 +1,51 @@
-import type { ReactNode } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
+"use client";
 
-const navLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/listings", label: "Marketplace" },
-  { href: "/dashboard", label: "Control Center" },
-  { href: "/seller/dashboard", label: "Seller OS" },
-  { href: "/login", label: "Entrar" },
-];
+import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
 
-const statusItems = [
-  "Escrow 24h",
-  "Sin compartir contraseñas",
-  "Pagos protegidos",
-  "Modo claro/oscuro",
-];
-
-export function SiteShell({ children }: { children: ReactNode }) {
+export default function SiteShell({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <header className="site-header">
-        <div className="shell nav-shell">
-          <a className="brand" href="/">
-            <span className="brand-mark">LS</span>
-            <div>
-              <strong>LinkStream</strong>
-              <small>Fintech SaaS para cupos digitales</small>
-            </div>
-          </a>
+      <div className="min-h-screen bg-black text-white">
 
-          <nav className="nav-links" aria-label="Principal">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">
-                {link.label}
-              </a>
-            ))}
-          </nav>
+            {/* 🔝 NAVBAR */}
+                  <header className="flex justify-between items-center px-6 py-4 border-b border-white/10">
 
-          <div className="nav-actions">
-            <ThemeToggle />
-            <a className="button button-ghost" href="/seller/onboarding">
-              Vender
-            </a>
-            <a className="button button-primary" href="/signup">
-              Crear cuenta
-            </a>
-          </div>
-        </div>
-      </header>
+                          {/* LOGO */}
+                                  <Link href="/" className="font-bold text-lg">
+                                            LinkStream
+                                                    </Link>
 
-      <div className="shell status-strip" aria-label="Ventajas clave">
-        {statusItems.map((item) => (
-          <span key={item} className="pill subtle-pill">
-            {item}
-          </span>
-        ))}
-      </div>
+                                                            {/* NAV LINKS */}
+                                                                    <nav className="flex items-center gap-4 text-sm">
 
-      <div className="shell page-shell">{children}</div>
+                                                                              <Link
+                                                                                          href="/marketplace"
+                                                                                                      className="hover:text-green-400 transition"
+                                                                                                                >
+                                                                                                                            Marketplace
+                                                                                                                                      </Link>
 
-      <footer className="site-footer">
-        <div className="shell footer-grid">
-          <div>
-            <strong>LinkStream</strong>
-            <p>
-              Una experiencia estilo fintech/SaaS para vender y comprar accesos digitales con más claridad,
-              confianza y conversión.
-            </p>
-            <div className="stack-row" style={{ marginTop: 14 }}>
-              <span className="pill">Marketplace</span>
-              <span className="pill">Seller OS</span>
-              <span className="pill">Checkout protegido</span>
-            </div>
-          </div>
-          <div>
-            <h4>Producto</h4>
-            <a href="/listings">Explorar catálogo</a>
-            <a href="/dashboard">Control center</a>
-            <a href="/seller/dashboard">Seller OS</a>
-          </div>
-          <div>
-            <h4>Infraestructura</h4>
-            <span>Supabase + Mercado Pago</span>
-            <span>Escrow operativo</span>
-            <span>Arquitectura lista para escalar</span>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
-}
+                                                                                                                                                <Link
+                                                                                                                                                            href="/seller"
+                                                                                                                                                                        className="hover:text-green-400 transition"
+                                                                                                                                                                                  >
+                                                                                                                                                                                              Seller
+                                                                                                                                                                                                        </Link>
+
+                                                                                                                                                                                                                  <Link
+                                                                                                                                                                                                                              href="/login"
+                                                                                                                                                                                                                                          className="hover:text-green-400 transition"
+                                                                                                                                                                                                                                                    >
+                                                                                                                                                                                                                                                                Login
+                                                                                                                                                                                                                                                                          </Link>
+
+                                                                                                                                                                                                                                                                                    {/* 🌙 Dark/Light toggle */}
+                                                                                                                                                                                                                                                                                              <ThemeToggle />
+                                                                                                                                                                                                                                                                                                      </nav>
+                                                                                                                                                                                                                                                                                                            </header>
+
+                                                                                                                                                                                                                                                                                                                  {/* 📦 CONTENIDO */}
+                                                                                                                                                                                                                                                                                                                        <main className="p-6">{children}</main>
+                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                              );
+                                                                                                                                                                                                                                                                                                                              }

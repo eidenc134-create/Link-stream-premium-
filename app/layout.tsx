@@ -1,22 +1,19 @@
+import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/Navbar";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "LinkStream",
-    description: "Marketplace de cuentas premium",
+    description: "El paraíso del entretenimiento digital",
     };
 
     export default function RootLayout({
       children,
-      }: {
+      }: Readonly<{
         children: React.ReactNode;
-        }) {
+        }>) {
           return (
               <html lang="es">
-                    <body className="bg-black text-white">
-                            <Navbar />
-                                    <main>{children}</main>
-                                          </body>
-                                              </html>
-                                                );
-                                                }
+                    <body>{children}</body>
+                        </html>
+                          );
+                          }

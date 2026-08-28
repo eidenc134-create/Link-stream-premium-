@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/eidenc134-create/Link-stream-premium-#readme",
   "dependencies": {
-    "firebase": "^12.17.1",
+    "firebase": "^12.18.0",
     "firebase-admin": "^14.2.0",
     "next": "^16.3.1",
     "react": "^19.2.8",

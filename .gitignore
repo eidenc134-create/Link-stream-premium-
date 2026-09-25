@@ -14,3 +14,9 @@ out/
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
+
+secrets/
+
+*.zip
+
+tsconfig.tsbuildinfo
